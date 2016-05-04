@@ -33,38 +33,38 @@ function walk(dir, done) {
 
 /*
  * options: {
- * 	path: , //Path to jasperreports-x.x.x-project directory
+ *  path: , //Path to jasperreports-x.x.x-project directory
  *  tmpPath: '/tmp', // Path to a folder for storing compiled report files
- * 	reports: {
- * 		// Report Definition
- * 		"name": {
- * 			jasper: , //Path to jasper file,
- * 			jrxml: , //Path to jrxml file,
- * 			conn: , //Connection name, definition object or false (if false defaultConn won't apply)
- * 		}
- * 	},
- * 	drivers: {
- *		// Driver Definition
- * 		"name": {
- 			path: , //Path to jdbc driver jar
- 			class: , //Class name of the driver (what you would tipically place in "Class.forName()" in java)
- 			type: //Type of database (mysql, postgres)
- 		}
- * 	},
- * 	conns: {
- *		// Connection Definition
- * 		"name": {
- * 			host: , //Database hostname or IP
- * 			port: , //Database Port
- * 			dbname: , //Database Name
- * 			user: , //User Name
- * 			pass: , //User Password
- * 			jdbc: , //jdbc connection string
- *			driver: //name or definition of the driver for this conn
- * 		}
- *	},
- *	defaultConn: , //Default Connection name
-	java: //Array of java options, for example ["-Djava.awt.headless=true"]
+ *  reports: {
+ *      // Report Definition
+ *      "name": {
+ *          jasper: , //Path to jasper file,
+ *          jrxml: , //Path to jrxml file,
+ *          conn: , //Connection name, definition object or false (if false defaultConn won't apply)
+ *      }
+ *  },
+ *  drivers: {
+ *      // Driver Definition
+ *      "name": {
+            path: , //Path to jdbc driver jar
+            class: , //Class name of the driver (what you would tipically place in "Class.forName()" in java)
+            type: //Type of database (mysql, postgres)
+        }
+ *  },
+ *  conns: {
+ *      // Connection Definition
+ *      "name": {
+ *          host: , //Database hostname or IP
+ *          port: , //Database Port
+ *          dbname: , //Database Name
+ *          user: , //User Name
+ *          pass: , //User Password
+ *          jdbc: , //jdbc connection string
+ *          driver: //name or definition of the driver for this conn
+ *      }
+ *  },
+ *  defaultConn: , //Default Connection name
+    java: //Array of java options, for example ["-Djava.awt.headless=true"]
  * }
  */
 function jasper(options) {
@@ -88,7 +88,7 @@ function jasper(options) {
     }
     var self = this;
 
-    options.path = __dirname + './JASPER_LIB/';
+    //options.path = __dirname + './JASPER_LIB/';
 
     self.parentPath = path.dirname(module.parent.filename);
     var jrPath = path.resolve(self.parentPath, options.path || '.');
@@ -206,11 +206,11 @@ jasper.prototype.pdf = function(report) {
  * _ An object that represents report's definition. No data is supplied.. defaultConn will be applied to get data with reports internal query.
  * _ An object that represents reports, data and properties to override for this specific method call.
  *
- * 	{
- * 		report: , //name, definition or an array with any combination of both
- * 		data: {}, //Data to be applied to the report. If there is an array of reports, data will be applied to each.
- * 		override: {} //properties of report to override for this specific method call.
- * 	}
+ *  {
+ *      report: , //name, definition or an array with any combination of both
+ *      data: {}, //Data to be applied to the report. If there is an array of reports, data will be applied to each.
+ *      override: {} //properties of report to override for this specific method call.
+ *  }
  * _ An array with any combination of the three posibilities described before.
  * _ A function returning any combination of the four posibilities described before.
  */
@@ -250,8 +250,6 @@ jasper.prototype.export = function(report, type) {
             }
         }
     };
-
-
 
     var processConn = function(conn, item) {
         if (conn == 'in_memory_json') {
